@@ -1,5 +1,8 @@
 body {
     background-color: blanchedalmond;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card{
@@ -7,4 +10,21 @@ body {
     border-radius: 10px;
     padding: 20px;
     box-shadow:5px;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+button {
+    background-color: blanchedalmond;
+    margin-top: 10px;
+}
+
+h1,h2 {
+    text-align: center;
 }

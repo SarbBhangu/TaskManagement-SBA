@@ -17,5 +17,15 @@ function addTask() {
     let deadline = deadlineInput.value;
     let status = statusInput.value;
 
+    let newTask = {
+        name: name,
+        category: category,
+        deadline: deadline,
+        status: status
+    };
+
+    tasks.push(newTask);
+    console.log(tasks);
+
 }
 addBtn.addEventListener("click", addTask);

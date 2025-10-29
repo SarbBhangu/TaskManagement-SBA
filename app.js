@@ -26,6 +26,17 @@ function addTask() {
 
     tasks.push(newTask);
     console.log(tasks);
-
+    displayTask();
 }
 addBtn.addEventListener("click", addTask);
+
+function displayTask(){
+    taskList.innerHTML = "";
+
+    for (let i = 0; i < tasks.length; i++){
+        let item = document.createElement("li")
+        item.innerHTML= `Task Name:${tasks[i].name}, Category: ${tasks[i].category},Deadline:${task[i].deadline}, Status:${tasks[i].status}`;
+
+        taskList.appendChild(item);
+    }
+    }

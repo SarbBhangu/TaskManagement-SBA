@@ -12,13 +12,10 @@ const taskList= document.getElementById('taskList');
 let tasks = [];
 
 function addTask() {
-    let newTask = nameInput.value;
-    tasks.push(newTask);
-    console.log(tasks);
+    let name = nameInput.value.trim();
+    let category = categoryInput.value.trim();
+    let deadline = deadlineInput.value;
+    let status = statusInput.value;
 
-    let newItem = document.createElement("li");
-    newItem.textContent= newTask;
-    taskList.appendChild(newItem);
-    nameInput.value= "";
 }
 addBtn.addEventListener("click", addTask);

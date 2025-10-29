@@ -52,7 +52,14 @@
 
     <section class="card">
         <h2>Tasks</h2>
-        <ul id="taskList"></ul>
+        <ul id="taskList">
+            <li>
+                <select onchange="updateStatus(this)">
+                    <option>In Progress</option>
+                    <option>Completed</option>
+                </select>
+            </li>
+        </ul>
     </section>
 
 <script src="app.js"></script>   

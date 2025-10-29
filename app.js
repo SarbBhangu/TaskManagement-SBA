@@ -41,12 +41,42 @@ function addTask() {
 addBtn.addEventListener("click", addTask);
 
 function displayTask(){
-    taskList.innerHTML = "";
+     taskList.innerHTML = "";
 
-    for (let i = 0; i < tasks.length; i++){
-        let item = document.createElement("li")
-        item.innerHTML= `Task Name:${tasks[i].name}, Category: ${tasks[i].category},Deadline:${tasks[i].deadline}, Status:${tasks[i].status}`;
+  for (let i = 0; i < tasks.length; i++) {
+    let item = document.createElement("li");
 
-        taskList.appendChild(item);
+    let statusOptions = "";
+    if (tasks[i].status === "In Progress") {
+      statusOptions = `
+        <option selected>In Progress</option>
+        <option>Completed</option>
+      `;
+    } else {
+      statusOptions = `
+        <option>In Progress</option>
+        <option selected>Completed</option>
+      `;
     }
+   
+    item.innerHTML = `
+      Task Name: ${tasks[i].name}<br>
+      Category: ${tasks[i].category}<br>
+      Deadline: ${tasks[i].deadline}<br>
+      Status:
+      <select onchange="updateStatus(this, ${i})">
+        ${statusOptions}
+      </select>
+    `;
+
+    taskList.appendChild(item);
+  }
+}
+
+    function updateStatus(selectOption, option) {
+        let newStatus = selectOption.value;
+        tasks[option].status = newStatus;
+        console.log("Status changed to:", newStatus);
+
+        displayTask()
     }

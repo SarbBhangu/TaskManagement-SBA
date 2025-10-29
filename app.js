@@ -6,10 +6,12 @@ const addBtn = document.getElementById('addBtn');
 const filterStatus= document.getElementById('filterStatus');
 const filterCategory= document.getElementById('filterCategory');
 const applyFiltersBtn= document.getElementById('applyFiltersBtn');
-const resetFiltersBtn= document.getElementById('resetFiltersBtn');
+const resetFiltersBtn= document.getElementById('resetFilterBtn');
 const taskList= document.getElementById('taskList');
 
 let tasks = [];
+
+
 
 function addTask() {
     let name = nameInput.value.trim();
@@ -40,13 +42,19 @@ function addTask() {
 }
 addBtn.addEventListener("click", addTask);
 
+
+
 function displayTask(){
      taskList.innerHTML = "";
-
-  for (let i = 0; i < tasks.length; i++) {
+     let chosen= filterStatus.value;
+     
+    for (let i = 0; i < tasks.length; i++) {
+    
+    if (chosen !== "all" && tasks[i].status !== chosen) continue;
+   
     let item = document.createElement("li");
-
     let statusOptions = "";
+    
     if (tasks[i].status === "In Progress") {
       statusOptions = `
         <option selected>In Progress</option>
@@ -64,19 +72,28 @@ function displayTask(){
       Category: ${tasks[i].category}<br>
       Deadline: ${tasks[i].deadline}<br>
       Status:
-      <select onchange="updateStatus(this, ${i})">
+        <select onchange="updateStatus(this, ${i})">
         ${statusOptions}
-      </select>
+        </select>
     `;
 
     taskList.appendChild(item);
   }
 }
 
-    function updateStatus(selectOption, option) {
-        let newStatus = selectOption.value;
-        tasks[option].status = newStatus;
-        console.log("Status changed to:", newStatus);
 
-        displayTask()
-    }
+
+    function updateStatus(option, position) {
+        let newStatus = option.value;
+        tasks[position].status = newStatus;
+        console.log("Status changed to:", newStatus);
+  
+        displayTask();
+}
+
+applyFilterBtn.addEventListener("click" , displayTask);
+resetFilterBtn.addEventListener("click", () =>{
+    filterStatus.value = "all";
+    displayTask();
+})
+

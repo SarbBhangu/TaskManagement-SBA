@@ -32,6 +32,11 @@ function addTask() {
     tasks.push(newTask);
     console.log(tasks);
     displayTask();
+
+    nameInput.value = "";
+    categoryInput.value = "";
+    deadlineInput.value = "";
+    statusInput.value = "In Progress";
 }
 addBtn.addEventListener("click", addTask);
 
@@ -40,7 +45,7 @@ function displayTask(){
 
     for (let i = 0; i < tasks.length; i++){
         let item = document.createElement("li")
-        item.innerHTML= `Task Name:${tasks[i].name}, Category: ${tasks[i].category},Deadline:${task[i].deadline}, Status:${tasks[i].status}`;
+        item.innerHTML= `Task Name:${tasks[i].name}, Category: ${tasks[i].category},Deadline:${tasks[i].deadline}, Status:${tasks[i].status}`;
 
         taskList.appendChild(item);
     }

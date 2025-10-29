@@ -17,6 +17,11 @@ function addTask() {
     let deadline = deadlineInput.value;
     let status = statusInput.value;
 
+    if (!name){
+        alert('Task required');
+        return;
+    }
+
     let newTask = {
         name: name,
         category: category,
